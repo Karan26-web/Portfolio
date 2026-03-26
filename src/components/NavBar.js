@@ -1,80 +1,173 @@
-import { useEffect, useState } from 'react';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import logo from '../assets/img/logo2.png';
-import navIcon1 from '../assets/img/nav-icon1.svg';
-import navIcon2 from '../assets/img/git_img.png';
-import navIcon3 from '../assets/img/nav-icon3.svg';
+import { useEffect, useMemo, useRef, useState } from "react";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import { FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
 
+const links = [
+  { id: "home", label: "Home", href: "#home" },
+  { id: "about", label: "About", href: "#about" },
+  { id: "projects", label: "Projects", href: "#projects" },
+  { id: "experience", label: "Experience", href: "#experience" },
+  { id: "skills", label: "Skills", href: "#skills" },
+  { id: "contact", label: "Contact", href: "#contact" },
+];
 
 export const NavBar = () => {
-    const [activeLink, setActiveLink] = useState('home');
-    const [scrolled, setScrolled] = useState(false);
+  const [activeLink, setActiveLink] = useState("home");
+  const [scrolled, setScrolled] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const [orbitIndicator, setOrbitIndicator] = useState({ x: 0, trail: 34, ready: false });
+  const navLinksRef = useRef(null);
+  const linkRefs = useRef({});
+  const sectionLinks = useMemo(() => links.filter((item) => item.href.startsWith("#")), []);
+  const navbarStars = useMemo(
+    () =>
+      Array.from({ length: 20 }, (_, id) => ({
+        id,
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        size: 1 + Math.random() * 2,
+        delay: Math.random() * 7,
+        duration: 3 + Math.random() * 5,
+      })),
+    []
+  );
 
-    useEffect(() => {
-        const onScroll = () => {
-            if (window.scrollY > 50) {
-                setScrolled(true);
-            } else {
-                setScrolled(false);
-            }
+  useEffect(() => {
+    const updateOrbitIndicator = () => {
+      const container = navLinksRef.current;
+      const activeNode = linkRefs.current[activeLink];
+      if (!container || !activeNode) return;
+
+      const containerRect = container.getBoundingClientRect();
+      const activeRect = activeNode.getBoundingClientRect();
+      const centerX = activeRect.left - containerRect.left + activeRect.width / 2;
+      const trail = Math.max(28, Math.min(76, activeRect.width * 0.55));
+
+      setOrbitIndicator((prev) => {
+        if (prev.x === centerX && prev.trail === trail && prev.ready) return prev;
+        return { x: centerX, trail, ready: true };
+      });
+    };
+
+    updateOrbitIndicator();
+    window.addEventListener("resize", updateOrbitIndicator);
+
+    return () => {
+      window.removeEventListener("resize", updateOrbitIndicator);
+    };
+  }, [activeLink, expanded]);
+
+  useEffect(() => {
+    const sections = sectionLinks
+      .map((item) => ({ id: item.id, element: document.querySelector(item.href) }))
+      .filter((entry) => entry.element);
+
+    const onScroll = () => {
+      setScrolled(window.scrollY > 24);
+
+      const probeLine = window.scrollY + window.innerHeight * 0.34;
+      let nextActive = sectionLinks[0]?.id || "home";
+
+      sections.forEach(({ id, element }) => {
+        if (element.offsetTop <= probeLine) {
+          nextActive = id;
         }
+      });
 
-        window.addEventListener('scroll', onScroll);
+      setActiveLink((prev) => (prev === nextActive ? prev : nextActive));
+    };
 
-        return () => window.removeEventListener('scroll', onScroll);
-    }, [])
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
 
-    const onUpdateActiveLink = (value) => {
-        setActiveLink(value);
-    }
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [sectionLinks]);
+
+  const onLinkClick = (id) => {
+    setActiveLink(id);
+    setExpanded(false);
+  };
 
   return (
-    <Navbar expand="lg" className={scrolled ? 'scrolled' : ''}>
-      <Container>
-        <Navbar.Brand href="#home">
-          <img src={logo} alt="logo" height="30" />
+    <Navbar expand="lg" expanded={expanded} onToggle={setExpanded} className={`neo-navbar ${scrolled ? "scrolled" : ""}`}>
+      <Container fluid className="neo-navbar-shell">
+        <div className="neo-navbar-stars" aria-hidden="true">
+          {navbarStars.map((star) => (
+            <span
+              key={star.id}
+              className="neo-navbar-star"
+              style={{
+                left: `${star.x}%`,
+                top: `${star.y}%`,
+                width: `${star.size}px`,
+                height: `${star.size}px`,
+                animationDelay: `${star.delay}s`,
+                animationDuration: `${star.duration}s`,
+              }}
+            />
+          ))}
+        </div>
+
+        <Navbar.Brand href="#home" className="neo-brand" onClick={() => onLinkClick("home")}>
+          <span className="neo-brand-text">Karan Kumar</span>
+          <span className="neo-brand-orbit" aria-hidden="true" />
         </Navbar.Brand>
 
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" className="neo-toggle" />
 
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="#home" className={activeLink === 'home' ? 'active-navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('home')}>Home</Nav.Link>
-            <Nav.Link href="#skills" className={activeLink === 'skills' ? 'active-navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('skills') }>Skills</Nav.Link>
-            <Nav.Link href="#projects" className={activeLink === 'projects' ? 'active-navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('projects') }>Projects</Nav.Link>
-          </Nav>
-          <span className='navbar-text'>
-            <div className='social-icon'>
-                <a href='https://www.linkedin.com/in/karan-kumar-4360a82b4/' target="_blank"> <img src={navIcon1} alt='LinkdIn' /> </a>
-                <a
-                  href="https://github.com/Karan26-web"
-                  target="_blank"
-                  rel="noopener noreferrer"
+          <div className="neo-nav-center">
+            <Nav className="neo-nav-links" ref={navLinksRef}>
+              {links.map((item) => (
+                <Nav.Link
+                  key={item.id}
+                  href={item.href}
+                  ref={(node) => {
+                    linkRefs.current[item.id] = node;
+                  }}
+                  className={`navbar-link ${activeLink === item.id ? "active-navbar-link" : ""}`}
+                  aria-current={activeLink === item.id ? "page" : undefined}
+                  onClick={() => onLinkClick(item.id)}
                 >
-                <img src={navIcon2} alt="Github" />
-              </a>
-              <a href='https://www.instagram.com/__karano1/' target="_blank"> <img src={navIcon3} alt='insta' /> </a>
-            </div>
-            {/* <button className='vvd' onClick={() => console.log('connect')}>
-                <span>Let's connect</span>
-            </button> */}
-            <a
-              href="/Karan_Resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="vvd"
-            >
-              <span>Download Resume</span>
+                  <span className="neo-link-label">{item.label}</span>
+                </Nav.Link>
+              ))}
+              <span
+                className={`neo-orbit-indicator ${orbitIndicator.ready ? "is-ready" : ""}`}
+                style={{
+                  "--orbit-x": `${orbitIndicator.x}px`,
+                  "--orbit-trail": `${orbitIndicator.trail}px`,
+                }}
+                aria-hidden="true"
+              />
+            </Nav>
+          </div>
+
+          <div className="neo-navbar-right">
+            <a className="neo-social-btn" href="https://github.com/Karan26-web" target="_blank" rel="noreferrer" aria-label="GitHub">
+              <FiGithub />
             </a>
-
-
-          </span>
+            <a
+              className="neo-social-btn"
+              href="https://www.linkedin.com/in/karan-kumar-4360a82b4/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn"
+            >
+              <FiLinkedin />
+            </a>
+            <a className="neo-social-btn" href="mailto:karankumarofficial66@gmail.com" aria-label="Email">
+              <FiMail />
+            </a>
+          </div>
         </Navbar.Collapse>
       </Container>
     </Navbar>
   );
 };
-
-export default NavBar;
