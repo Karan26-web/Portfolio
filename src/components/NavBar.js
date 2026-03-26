@@ -7,9 +7,11 @@ import { FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
 const links = [
   { id: "home", label: "Home", href: "#home" },
   { id: "about", label: "About", href: "#about" },
-  { id: "projects", label: "Projects", href: "#projects" },
   { id: "experience", label: "Experience", href: "#experience" },
+  { id: "projects", label: "Projects", href: "#projects" },
   { id: "skills", label: "Skills", href: "#skills" },
+  { id: "leadership", label: "Leadership", href: "#leadership" },
+  { id: "ai", label: "AI", href: "#ai" },
   { id: "contact", label: "Contact", href: "#contact" },
 ];
 

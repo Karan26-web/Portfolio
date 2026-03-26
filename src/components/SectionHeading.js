@@ -9,11 +9,12 @@ export const SectionHeading = ({ title, description }) => {
       viewport={{ once: true, amount: 0.35 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      <h2>
+      <h2 className="skills-title">
         {title}
-        <span className="section-pointer" aria-hidden="true" />
+        <span className="skills-title-dot" aria-hidden="true" />
       </h2>
-      {description ? <p>{description}</p> : null}
+      <span className="skills-title-line" aria-hidden="true" />
+      {description ? <p className="skills-subtitle">{description}</p> : null}
     </motion.div>
   );
 };

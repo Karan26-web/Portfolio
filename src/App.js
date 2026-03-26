@@ -7,6 +7,7 @@ import { Banner } from "./components/Banner";
 import { About } from "./components/About";
 import { Projects } from "./components/Projects";
 import { Experience } from "./components/Experience";
+import { Leadership } from "./components/Leadership";
 import { Skills } from "./components/Skills";
 import { AISection } from "./components/AISection";
 import { Contact } from "./components/Contact";
@@ -58,6 +59,7 @@ function App() {
         <Experience />
         <Projects />
         <Skills />
+        <Leadership />
         <AISection />
         <Contact />
         <Footer />
