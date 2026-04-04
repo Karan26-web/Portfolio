@@ -3,6 +3,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
+import { SiInstagram } from "react-icons/si";
 
 const links = [
   { id: "home", label: "Home", href: "#home" },
@@ -12,7 +13,6 @@ const links = [
   { id: "skills", label: "Skills", href: "#skills" },
   { id: "leadership", label: "Leadership", href: "#leadership" },
   { id: "ai", label: "AI", href: "#ai" },
-  { id: "contact", label: "Contact", href: "#contact" },
 ];
 
 export const NavBar = () => {
@@ -163,6 +163,15 @@ export const NavBar = () => {
               aria-label="LinkedIn"
             >
               <FiLinkedin />
+            </a>
+            <a
+              className="neo-social-btn"
+              href="https://www.instagram.com/__karano1/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Instagram"
+            >
+              <SiInstagram />
             </a>
             <a className="neo-social-btn" href="mailto:karankumarofficial66@gmail.com" aria-label="Email">
               <FiMail />

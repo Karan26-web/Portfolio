@@ -10,8 +10,7 @@ import { Experience } from "./components/Experience";
 import { Leadership } from "./components/Leadership";
 import { Skills } from "./components/Skills";
 import { AISection } from "./components/AISection";
-import { Contact } from "./components/Contact";
-import { Footer } from "./components/Footer";
+import { CosmicFooter } from "./components/CosmicFooter";
 import { ShootingStars } from "./components/ShootingStars";
 
 function App() {
@@ -46,6 +45,9 @@ function App() {
     <div className="App">
       <ShootingStars />
 
+      {/* Global Glitch Overlay */}
+      <div className="glitch-overlay" aria-hidden="true" />
+
       <div
         className={`moon-cursor ${cursor.active ? "is-visible" : ""}`}
         style={{ transform: `translate3d(${cursor.x}px, ${cursor.y}px, 0)` }}
@@ -61,8 +63,7 @@ function App() {
         <Skills />
         <Leadership />
         <AISection />
-        <Contact />
-        <Footer />
+        <CosmicFooter />
       </div>
     </div>
   );

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Col } from "react-bootstrap";
 import { motion } from "framer-motion";
-import { FiGithub } from "react-icons/fi";
+import { FiGithub, FiExternalLink } from "react-icons/fi";
 
-export const ProjectCard = ({ title, description, githubUrl, stack, index }) => {
+export const ProjectCard = ({ title, description, githubUrl, liveUrl, stack, index }) => {
   const [tiltStyle, setTiltStyle] = useState({
     transform: "perspective(1000px) rotateX(0deg) rotateY(0deg)",
   });
@@ -47,9 +47,16 @@ export const ProjectCard = ({ title, description, githubUrl, stack, index }) => 
           </ul>
 
           <div className="project-actions">
-            <a href={githubUrl} target="_blank" rel="noreferrer" className="ghost-btn star-hover">
-              <FiGithub aria-hidden="true" /> GitHub
-            </a>
+            {githubUrl && (
+              <a href={githubUrl} target="_blank" rel="noreferrer" className="ghost-btn star-hover">
+                <FiGithub aria-hidden="true" /> GitHub
+              </a>
+            )}
+            {liveUrl && (
+              <a href={liveUrl} target="_blank" rel="noreferrer" className="ghost-btn star-hover">
+                <FiExternalLink aria-hidden="true" /> Live
+              </a>
+            )}
           </div>
         </div>
       </motion.article>
