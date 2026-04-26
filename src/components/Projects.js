@@ -4,6 +4,20 @@ import { ProjectCard } from "./ProjectCard";
 
 const projects = [
   {
+    title: "VillageMela — Game Design",
+    description:
+      "A browser-based coin-toss game set in a village fair, designed around simple mechanics, playful feedback, and a lighthearted mela atmosphere.",
+    liveUrl: "https://karan26-web.github.io/CoinForTheVillageMela/",
+    stack: ["Game Design", "HTML", "CSS", "JavaScript"],
+  },
+  {
+    title: "Missing Pages",
+    description:
+      "An interactive word game where players solve and understand idioms through engaging puzzles — turning language learning into play.",
+    liveUrl: "https://playful-haupia-f5dd40.netlify.app/",
+    stack: ["Game Design", "HTML", "CSS", "JavaScript"],
+  },
+  {
     title: "WanderLust",
     description:
       "Travel platform featuring listing cards, map-first discovery, secure auth, and image-rich destination previews.",
@@ -25,25 +39,11 @@ const projects = [
     stack: ["SQL", "Data Prep", "Data Storage", "Analysis"],
   },
   {
-    title: "Game Designs",
-    description:
-      "A curated collection of game design explorations, mechanics concepts, and iterative design documentation.",
-    githubUrl: "https://github.com/Karan26-web/Designs",
-    stack: ["Game Design", "Mechanics Design", "Design Docs", "Iteration"],
-  },
-  {
     title: "Lattice Finance Dashboard",
     description:
       "A frontend finance workspace with role-based access, transaction management, and live spending insights. Built with React Context and Recharts; supports light/dark mode and local persistence.",
     liveUrl: "https://latticefinancebykaran.vercel.app/",
     stack: ["React 18", "Vite", "Tailwind CSS", "Recharts", "Context API"],
-  },
-  {
-    title: "VillageMela — Game Design",
-    description:
-      "A browser-based coin-toss game set in a village fair, designed around simple mechanics, playful feedback, and a lighthearted mela atmosphere.",
-    liveUrl: "https://karan26-web.github.io/CoinForTheVillageMela/",
-    stack: ["Game Design", "HTML", "CSS", "JavaScript"],
   },
 ];
 
