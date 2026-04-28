@@ -8,7 +8,7 @@ import { WebGLShader } from "./WebGLShader";
 export const Banner = () => {
   const stars = useMemo(
     () =>
-      Array.from({ length: 200 }, (_, i) => ({
+      Array.from({ length: 80 }, (_, i) => ({
         id: i,
         size: 0.8 + Math.random() * 2.8,
         x: Math.random() * 100,
@@ -22,26 +22,8 @@ export const Banner = () => {
 
   return (
     <section className="banner hero-neo" id="home" style={{ background: "#000" }}>
-      {/* Bottom wave */}
-      <WebGLShader position="bottom" />
-      {/* Top wave — flipped */}
-      <WebGLShader position="top" />
-      {/* Slim strip just under the navbar */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          height: 160,
-          overflow: "hidden",
-          zIndex: 1,
-          pointerEvents: "none",
-        }}
-      >
-        <WebGLShader position="bottom" />
-      </div>
+      {/* Single canvas renders both top and bottom waves */}
+      <WebGLShader />
 
       <div className="starfield" aria-hidden="true" style={{ zIndex: 1 }}>
         {stars.map((star) => (

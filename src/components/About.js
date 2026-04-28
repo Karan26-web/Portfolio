@@ -24,6 +24,7 @@ const pillars = [
 export const About = () => {
   return (
     <section className="neo-section about-section" id="about">
+      <div className="about-wave-glow" aria-hidden="true" />
       <Container>
         <SectionHeading
           title="About Me"

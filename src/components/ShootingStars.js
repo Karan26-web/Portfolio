@@ -1,80 +1,122 @@
-import { useMemo } from "react";
+import { useEffect, useRef } from "react";
 
-const METEOR_COUNT = 18;
-const STAR_COUNT = 520;
-
-const randomBetween = (a, b) => a + Math.random() * (b - a);
+const STAR_COUNT  = 160;
+const METEOR_COUNT = 10;
 
 export const ShootingStars = () => {
-  const meteors = useMemo(
-    () =>
-      Array.from({ length: METEOR_COUNT }, (_, i) => ({
-        id: i,
-        top: `${randomBetween(2, 75)}%`,
-        left: `${randomBetween(10, 95)}%`,
-        duration: `${randomBetween(4.5, 9)}s`,
-        delay: `${randomBetween(0, 14)}s`,
-        size: `${randomBetween(100, 220)}px`,
-      })),
-    []
-  );
+  const canvasRef = useRef(null);
 
-  const stars = useMemo(
-    () =>
-      Array.from({ length: STAR_COUNT }, (_, i) => {
-        // ~8% are large bright feature stars, rest are small
-        const isBig = i % 13 === 0;
-        return {
-          id: i,
-          top: `${randomBetween(0, 100)}%`,
-          left: `${randomBetween(0, 100)}%`,
-          size: isBig ? randomBetween(2.8, 4.2) : randomBetween(0.6, 2.2),
-          delay: `${randomBetween(0, 8)}s`,
-          duration: `${randomBetween(2.5, 11)}s`,
-          opacity: isBig ? randomBetween(0.7, 1.0) : randomBetween(0.25, 0.85),
-          glow: isBig ? 6 : 3,
-        };
-      }),
-    []
-  );
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    let rafId;
+    let W = window.innerWidth;
+    let H = window.innerHeight;
+
+    const resize = () => {
+      W = window.innerWidth;
+      H = window.innerHeight;
+      canvas.width  = W;
+      canvas.height = H;
+    };
+
+    const stars = Array.from({ length: STAR_COUNT }, () => ({
+      x: Math.random(),
+      y: Math.random(),
+      size: 0.5 + Math.random() * 2,
+      opacity: 0.25 + Math.random() * 0.75,
+      phase: Math.random() * Math.PI * 2,
+      speed: 0.003 + Math.random() * 0.006,
+    }));
+
+    const meteors = Array.from({ length: METEOR_COUNT }, () => ({
+      active: false,
+      delay: Math.floor(60 + Math.random() * 300),
+      x: 0, y: 0,
+      progress: 0,
+      length: 80 + Math.random() * 140,
+      travelSpeed: 0.0004 + Math.random() * 0.0004,
+    }));
+
+    const COS = Math.cos(-Math.PI / 4);
+    const SIN = Math.sin(-Math.PI / 4);
+
+    const draw = () => {
+      ctx.clearRect(0, 0, W, H);
+
+      for (const s of stars) {
+        s.phase += s.speed;
+        const op = s.opacity * (0.55 + 0.45 * Math.sin(s.phase));
+        ctx.beginPath();
+        ctx.arc(s.x * W, s.y * H, s.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(214,240,255,${op.toFixed(2)})`;
+        ctx.fill();
+      }
+
+      for (const m of meteors) {
+        if (!m.active) {
+          m.delay--;
+          if (m.delay <= 0) {
+            m.active = true;
+            m.x = Math.random() * 0.9 + 0.05;
+            m.y = Math.random() * 0.6;
+            m.progress = 0;
+            m.length = 80 + Math.random() * 140;
+            m.travelSpeed = 0.0004 + Math.random() * 0.0004;
+          }
+          continue;
+        }
+
+        m.progress += m.travelSpeed;
+        if (m.progress >= 1) {
+          m.active = false;
+          m.delay = Math.floor(180 + Math.random() * 480);
+          continue;
+        }
+
+        const dist = m.progress * 700;
+        const hx = m.x * W + dist * COS;
+        const hy = m.y * H + dist * SIN;
+        const tx = hx - m.length * COS;
+        const ty = hy - m.length * SIN;
+
+        const grad = ctx.createLinearGradient(tx, ty, hx, hy);
+        grad.addColorStop(0, "rgba(255,255,255,0)");
+        grad.addColorStop(1, "rgba(255,255,255,0.75)");
+
+        ctx.beginPath();
+        ctx.moveTo(tx, ty);
+        ctx.lineTo(hx, hy);
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+      }
+
+      rafId = requestAnimationFrame(draw);
+    };
+
+    resize();
+    window.addEventListener("resize", resize);
+    draw();
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      window.removeEventListener("resize", resize);
+    };
+  }, []);
 
   return (
-    <div className="shooting-stars-layer" aria-hidden="true">
-      {/* Global fixed starfield — visible across all sections */}
-      {stars.map((s) => (
-        <span
-          key={`star-${s.id}`}
-          className="star"
-          style={{
-            position: "fixed",
-            top: s.top,
-            left: s.left,
-            width: `${s.size}px`,
-            height: `${s.size}px`,
-            animationDelay: s.delay,
-            animationDuration: s.duration,
-            opacity: s.opacity,
-            borderRadius: "50%",
-            background: "rgba(214, 240, 255, 0.95)",
-            boxShadow: `0 0 ${s.size * s.glow}px rgba(184,226,255,0.55)`,
-          }}
-        />
-      ))}
-
-      {/* Shooting meteors spread across the full viewport */}
-      {meteors.map((m) => (
-        <span
-          key={`meteor-${m.id}`}
-          className="shooting-star"
-          style={{
-            top: m.top,
-            left: m.left,
-            width: m.size,
-            animationDuration: m.duration,
-            animationDelay: m.delay,
-          }}
-        />
-      ))}
-    </div>
+    <canvas
+      ref={canvasRef}
+      aria-hidden="true"
+      style={{
+        position: "fixed",
+        top: 0, left: 0,
+        width: "100%", height: "100%",
+        pointerEvents: "none",
+        zIndex: 0,
+      }}
+    />
   );
 };

@@ -35,7 +35,7 @@ export const CosmicFooter = () => {
   // ── Static data ───────────────────────────────────────────────────────────
   const farStars = useMemo(
     () =>
-      Array.from({ length: 110 }, (_, i) => ({
+      Array.from({ length: 45 }, (_, i) => ({
         id: i,
         x: Math.random() * 100,
         y: Math.random() * 140 - 20,
@@ -49,7 +49,7 @@ export const CosmicFooter = () => {
 
   const brightStars = useMemo(
     () =>
-      Array.from({ length: 35 }, (_, i) => ({
+      Array.from({ length: 12 }, (_, i) => ({
         id: i,
         x: Math.random() * 100,
         y: Math.random() * 140 - 20,
@@ -102,7 +102,7 @@ export const CosmicFooter = () => {
 
   const meteorShower = useMemo(
     () =>
-      Array.from({ length: 62 }, (_, id) => ({
+      Array.from({ length: 20 }, (_, id) => ({
         id,
         top: `${Math.round(-20 + Math.random() * 84)}vh`,
         right: `${Math.round(-4 - Math.random() * 20)}vw`,
