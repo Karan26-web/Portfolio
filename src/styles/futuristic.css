@@ -496,11 +496,8 @@ a:visited {
   font-size: clamp(34px, 4vw, 56px);
   font-weight: 700;
   line-height: 1.05;
-  color: transparent;
-  background: linear-gradient(90deg, #57ecff 0%, #4f8dff 52%, #9f79ff 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  text-shadow: 0 0 18px rgba(93, 205, 255, 0.28);
+  color: #ffffff;
+  text-shadow: none;
 }
 
 .section-pointer {
@@ -981,15 +978,15 @@ a:visited {
   font-size: clamp(42px, 5.8vw, 84px);
   line-height: 1.04;
   margin-bottom: 20px;
-  color: #f4f9ff;
-  text-shadow: 0 0 18px rgba(170, 214, 255, 0.22);
+  color: #ffffff;
+  text-shadow: none;
 }
 
 .hero-role {
   display: block;
   margin-top: 12px;
   color: transparent;
-  background: linear-gradient(90deg, #eefaff 0%, #85e6ff 48%, #89a5ff 100%);
+  background: linear-gradient(90deg, #3ddc84 0%, #2255ff 100%);
   -webkit-background-clip: text;
   background-clip: text;
 }
@@ -2019,11 +2016,8 @@ a:visited {
   font-size: clamp(28px, 3.5vw, 42px);
   letter-spacing: 0.045em;
   margin: 0;
-  color: transparent;
-  background: linear-gradient(90deg, #ddf4ff 0%, #89e6ff 44%, #63a8ff 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  text-shadow: 0 0 18px rgba(124, 215, 255, 0.38);
+  color: #ffffff;
+  text-shadow: none;
 }
 
 .contact-panel p {

@@ -86,7 +86,7 @@ export const Banner = () => {
               <p className="hero-kicker">Welcome to my Universe..</p>
               <h1>
                 Hi, I&apos;m Karan
-                <span className="hero-role">Game Designer & Product Builder</span>
+                <span className="hero-role">Game Dev & Design</span>
               </h1>
 
               <p>

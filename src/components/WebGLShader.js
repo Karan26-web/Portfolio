@@ -40,15 +40,13 @@ export const WebGLShader = ({ position = "bottom" }) => {
 
         float d = length(p) * distortion;
 
-        float rx = p.x * (1.0 + d);
-        float gx = p.x;
+        float gx = p.x * (1.0 + d);
         float bx = p.x * (1.0 - d);
 
-        float r = 0.05 / abs(p.y + sin((rx + time) * xScale) * yScale);
         float g = 0.05 / abs(p.y + sin((gx + time) * xScale) * yScale);
         float b = 0.05 / abs(p.y + sin((bx + time) * xScale) * yScale);
 
-        gl_FragColor = vec4(r, g, b, 1.0);
+        gl_FragColor = vec4(0.0, g, b, 1.0);
       }
     `;
 
