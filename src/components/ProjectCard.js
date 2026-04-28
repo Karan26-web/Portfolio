@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Col } from "react-bootstrap";
 import { motion } from "framer-motion";
 import { FiGithub, FiExternalLink } from "react-icons/fi";
+import { GlassLayers } from "./LiquidGlass";
 
 export const ProjectCard = ({ title, description, githubUrl, liveUrl, stack, index }) => {
   const [tiltStyle, setTiltStyle] = useState({
@@ -48,13 +49,31 @@ export const ProjectCard = ({ title, description, githubUrl, liveUrl, stack, ind
 
           <div className="project-actions">
             {githubUrl && (
-              <a href={githubUrl} target="_blank" rel="noreferrer" className="ghost-btn star-hover">
-                <FiGithub aria-hidden="true" /> GitHub
+              <a
+                href={githubUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="ghost-btn star-hover"
+                style={{ position: "relative", background: "transparent", border: "1px solid rgba(255,255,255,0.22)" }}
+              >
+                <GlassLayers />
+                <span style={{ position: "relative", zIndex: 3, display: "inline-flex", alignItems: "center", gap: 6 }}>
+                  <FiGithub aria-hidden="true" /> GitHub
+                </span>
               </a>
             )}
             {liveUrl && (
-              <a href={liveUrl} target="_blank" rel="noreferrer" className="ghost-btn star-hover">
-                <FiExternalLink aria-hidden="true" /> Live
+              <a
+                href={liveUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="ghost-btn star-hover"
+                style={{ position: "relative", background: "transparent", border: "1px solid rgba(255,255,255,0.22)" }}
+              >
+                <GlassLayers />
+                <span style={{ position: "relative", zIndex: 3, display: "inline-flex", alignItems: "center", gap: 6 }}>
+                  <FiExternalLink aria-hidden="true" /> Live
+                </span>
               </a>
             )}
           </div>

@@ -4,6 +4,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
 import { SiInstagram } from "react-icons/si";
+import { GlassLayers } from "./LiquidGlass";
 
 const links = [
   { id: "home", label: "Home", href: "#home" },
@@ -152,30 +153,25 @@ export const NavBar = () => {
           </div>
 
           <div className="neo-navbar-right">
-            <a className="neo-social-btn" href="https://github.com/Karan26-web" target="_blank" rel="noreferrer" aria-label="GitHub">
-              <FiGithub />
-            </a>
-            <a
-              className="neo-social-btn"
-              href="https://www.linkedin.com/in/karan-kumar-4360a82b4/"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="LinkedIn"
-            >
-              <FiLinkedin />
-            </a>
-            <a
-              className="neo-social-btn"
-              href="https://www.instagram.com/__karano1/"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Instagram"
-            >
-              <SiInstagram />
-            </a>
-            <a className="neo-social-btn" href="mailto:karankumarofficial66@gmail.com" aria-label="Email">
-              <FiMail />
-            </a>
+            {[
+              { href: "https://github.com/Karan26-web", icon: <FiGithub />, label: "GitHub", target: "_blank" },
+              { href: "https://www.linkedin.com/in/karan-kumar-4360a82b4/", icon: <FiLinkedin />, label: "LinkedIn", target: "_blank" },
+              { href: "https://www.instagram.com/__karano1/", icon: <SiInstagram />, label: "Instagram", target: "_blank" },
+              { href: "mailto:karankumarofficial66@gmail.com", icon: <FiMail />, label: "Email", target: undefined },
+            ].map(({ href, icon, label, target }) => (
+              <a
+                key={label}
+                className="neo-social-btn"
+                href={href}
+                target={target}
+                rel={target ? "noreferrer" : undefined}
+                aria-label={label}
+                style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.18)" }}
+              >
+                <GlassLayers tint="rgba(87, 200, 255, 0.08)" />
+                <span style={{ position: "relative", zIndex: 3 }}>{icon}</span>
+              </a>
+            ))}
           </div>
         </Navbar.Collapse>
       </Container>

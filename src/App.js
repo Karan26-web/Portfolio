@@ -12,6 +12,7 @@ import { Skills } from "./components/Skills";
 import { AISection } from "./components/AISection";
 import { CosmicFooter } from "./components/CosmicFooter";
 import { ShootingStars } from "./components/ShootingStars";
+import { GlassFilter } from "./components/LiquidGlass";
 
 function App() {
   const [cursor, setCursor] = useState({ x: 0, y: 0, active: false });
@@ -43,6 +44,7 @@ function App() {
 
   return (
     <div className="App">
+      <GlassFilter />
       <ShootingStars />
 
       {/* Global Glitch Overlay */}

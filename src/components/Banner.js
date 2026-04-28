@@ -2,24 +2,48 @@ import { useMemo } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { motion } from "framer-motion";
 import headerImg from "../assets/img/header-img.svg";
+import { GlassLayers } from "./LiquidGlass";
+import { WebGLShader } from "./WebGLShader";
 
 export const Banner = () => {
   const stars = useMemo(
     () =>
-      Array.from({ length: 56 }, (_, i) => ({
+      Array.from({ length: 200 }, (_, i) => ({
         id: i,
-        size: 1 + Math.random() * 2.5,
+        size: 0.8 + Math.random() * 2.8,
         x: Math.random() * 100,
         y: Math.random() * 100,
-        delay: Math.random() * 5,
-        duration: 4 + Math.random() * 8,
+        delay: Math.random() * 6,
+        duration: 3 + Math.random() * 9,
+        opacity: 0.4 + Math.random() * 0.6,
       })),
     []
   );
 
   return (
-    <section className="banner hero-neo" id="home">
-      <div className="starfield" aria-hidden="true">
+    <section className="banner hero-neo" id="home" style={{ background: "#000" }}>
+      {/* Bottom wave */}
+      <WebGLShader position="bottom" />
+      {/* Top wave — flipped */}
+      <WebGLShader position="top" />
+      {/* Slim strip just under the navbar */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: 160,
+          overflow: "hidden",
+          zIndex: 1,
+          pointerEvents: "none",
+        }}
+      >
+        <WebGLShader position="bottom" />
+      </div>
+
+      <div className="starfield" aria-hidden="true" style={{ zIndex: 1 }}>
         {stars.map((star) => (
           <span
             key={star.id}
@@ -31,6 +55,7 @@ export const Banner = () => {
               top: `${star.y}%`,
               animationDelay: `${star.delay}s`,
               animationDuration: `${star.duration}s`,
+              opacity: star.opacity,
             }}
           />
         ))}
@@ -50,7 +75,7 @@ export const Banner = () => {
         transition={{ duration: 24, repeat: Infinity, ease: "linear" }}
       />
 
-      <Container>
+      <Container style={{ position: "relative", zIndex: 2 }}>
         <Row className="align-items-center g-5">
           <Col xs={12} lg={6}>
             <motion.div
@@ -68,8 +93,18 @@ export const Banner = () => {
                 I design immersive digital experiences and data-driven products.
               </p>
 
-              <a href="#projects" className="hero-cta star-hover">
-                View My Work
+              <a
+                href="#projects"
+                className="hero-cta star-hover"
+                style={{
+                  position: "relative",
+                  background: "transparent",
+                  border: "1px solid rgba(255,255,255,0.3)",
+                  boxShadow: "0 6px 20px rgba(0,0,0,0.25)",
+                }}
+              >
+                <GlassLayers tint="rgba(87, 236, 255, 0.1)" />
+                <span style={{ position: "relative", zIndex: 3 }}>View My Work</span>
               </a>
             </motion.div>
           </Col>

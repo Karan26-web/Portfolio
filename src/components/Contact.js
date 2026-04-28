@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
 import { SiWhatsapp } from "react-icons/si";
 import { SectionHeading } from "./SectionHeading";
+import { GlassLayers } from "./LiquidGlass";
 
 export const Contact = () => {
   const whatsappMessage = "Heyy Karan, got ur contact from ur portfolio.";
@@ -35,30 +36,28 @@ export const Contact = () => {
           <p>karankumarofficial66@gmail.com</p>
 
           <div className="contact-socials">
-            <a className="contact-social-btn" href="https://www.linkedin.com/in/karan-kumar-4360a82b4/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
-              <span className="contact-social-icon">
-                <FiLinkedin />
-              </span>
-              <span>LinkedIn</span>
-            </a>
-            <a className="contact-social-btn" href="https://github.com/Karan26-web" target="_blank" rel="noreferrer" aria-label="GitHub">
-              <span className="contact-social-icon">
-                <FiGithub />
-              </span>
-              <span>GitHub</span>
-            </a>
-            <a className="contact-social-btn whatsapp-btn" href={whatsappHref} target="_blank" rel="noreferrer" aria-label="WhatsApp">
-              <span className="contact-social-icon">
-                <SiWhatsapp />
-              </span>
-              <span>WhatsApp</span>
-            </a>
-            <a className="contact-social-btn" href="mailto:karankumarofficial66@gmail.com" aria-label="Email">
-              <span className="contact-social-icon">
-                <FiMail />
-              </span>
-              <span>Email</span>
-            </a>
+            {[
+              { href: "https://www.linkedin.com/in/karan-kumar-4360a82b4/", icon: <FiLinkedin />, label: "LinkedIn", tint: "rgba(87,160,255,0.1)", extra: "", target: "_blank" },
+              { href: "https://github.com/Karan26-web", icon: <FiGithub />, label: "GitHub", tint: "rgba(180,180,255,0.1)", extra: "", target: "_blank" },
+              { href: whatsappHref, icon: <SiWhatsapp />, label: "WhatsApp", tint: "rgba(37,211,102,0.1)", extra: " whatsapp-btn", target: "_blank" },
+              { href: "mailto:karankumarofficial66@gmail.com", icon: <FiMail />, label: "Email", tint: "rgba(87,200,255,0.1)", extra: "", target: undefined },
+            ].map(({ href, icon, label, tint, extra, target }) => (
+              <a
+                key={label}
+                className={`contact-social-btn${extra}`}
+                href={href}
+                target={target}
+                rel={target ? "noreferrer" : undefined}
+                aria-label={label}
+                style={{ position: "relative", background: "transparent", border: "1px solid rgba(255,255,255,0.2)" }}
+              >
+                <GlassLayers tint={tint} />
+                <span className="contact-social-icon" style={{ position: "relative", zIndex: 3 }}>
+                  {icon}
+                </span>
+                <span style={{ position: "relative", zIndex: 3 }}>{label}</span>
+              </a>
+            ))}
           </div>
         </motion.div>
       </Container>
