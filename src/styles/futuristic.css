@@ -1115,28 +1115,47 @@ a:visited {
   position: relative;
 }
 
-.about-wave-glow {
+/* ── Cloud + Lightning transition ── */
+.cloud-lightning-wrap {
   position: absolute;
-  top: -1px;
+  top: -260px;
   left: 0;
   width: 100%;
-  height: 60px;
-  background: radial-gradient(ellipse 70% 100% at 50% 0%, rgba(61, 220, 132, 0.22) 0%, rgba(34, 85, 255, 0.15) 50%, transparent 100%);
+  height: 260px;
+  z-index: 3;
   pointer-events: none;
-  z-index: 0;
 }
 
-.about-wave-glow::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 5%;
-  width: 90%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent 0%, #3ddc84 30%, #2255ff 70%, transparent 100%);
-  filter: blur(1px);
-  box-shadow: 0 0 12px 3px rgba(61, 220, 132, 0.5), 0 0 24px 6px rgba(34, 85, 255, 0.3);
+.cloud-svg {
+  width: 100%;
+  height: 100%;
 }
+
+/* Lightning bolt animations */
+@keyframes bolt-strike {
+  0%, 82%, 100% { opacity: 0; }
+  84%  { opacity: 1; }
+  86%  { opacity: 0.15; }
+  88%  { opacity: 0.95; }
+  91%  { opacity: 0; }
+}
+
+@keyframes bolt-strike-alt {
+  0%, 70%, 100% { opacity: 0; }
+  72%  { opacity: 1; }
+  74%  { opacity: 0.1; }
+  76%  { opacity: 0.85; }
+  80%  { opacity: 0; }
+}
+
+.bolt { opacity: 0; }
+
+.b1 { animation: bolt-strike     3.2s ease-in-out infinite 0.0s; stroke: #fff; filter: drop-shadow(0 0 4px #00e5ff) drop-shadow(0 0 10px #3ddc84); }
+.b2 { animation: bolt-strike-alt 4.1s ease-in-out infinite 1.4s; stroke: #d0f0ff; filter: drop-shadow(0 0 4px #2255ff) drop-shadow(0 0 10px #00e5ff); }
+.b3 { animation: bolt-strike     2.8s ease-in-out infinite 0.6s; stroke: #fff; filter: drop-shadow(0 0 5px #00e5ff) drop-shadow(0 0 14px #3ddc84); }
+.b4 { animation: bolt-strike-alt 3.7s ease-in-out infinite 2.2s; stroke: #d0f0ff; filter: drop-shadow(0 0 4px #2255ff) drop-shadow(0 0 10px #00e5ff); }
+.b5 { animation: bolt-strike     3.4s ease-in-out infinite 1.0s; stroke: #fff; filter: drop-shadow(0 0 5px #00e5ff) drop-shadow(0 0 14px #3ddc84); }
+.b6 { animation: bolt-strike-alt 4.5s ease-in-out infinite 3.1s; stroke: #d0f0ff; filter: drop-shadow(0 0 4px #2255ff) drop-shadow(0 0 10px #00e5ff); }
 
 .about-section .feature-card {
   padding: 30px;

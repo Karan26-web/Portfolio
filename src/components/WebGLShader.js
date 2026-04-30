@@ -40,8 +40,8 @@ export const WebGLShader = () => {
         float gx = p.x * (1.0 + d);
         float bx = p.x * (1.0 - d);
 
-        float g  = 0.05 / abs(p.y + 0.85 + sin((gx  + time) * xScale) * yScale);
-        float b  = 0.05 / abs(p.y + 0.85 + sin((bx  + time) * xScale) * yScale);
+        float g  = 0.05 / abs(p.y + 0.78 + sin((gx  + time) * xScale) * yScale);
+        float b  = 0.05 / abs(p.y + 0.78 + sin((bx  + time) * xScale) * yScale);
         float g2 = 0.05 / abs(p.y - 0.88 + sin((-gx + time) * xScale) * yScale);
         float b2 = 0.05 / abs(p.y - 0.88 + sin((-bx + time) * xScale) * yScale);
 

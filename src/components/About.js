@@ -2,6 +2,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { motion } from "framer-motion";
 import { FiAperture, FiGrid, FiBarChart2 } from "react-icons/fi";
 import { SectionHeading } from "./SectionHeading";
+import { CloudLightning } from "./CloudLightning";
 
 const pillars = [
   {
@@ -24,7 +25,7 @@ const pillars = [
 export const About = () => {
   return (
     <section className="neo-section about-section" id="about">
-      <div className="about-wave-glow" aria-hidden="true" />
+      <CloudLightning />
       <Container>
         <SectionHeading
           title="About Me"
