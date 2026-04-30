@@ -6,6 +6,7 @@ import { NavBar } from "./components/NavBar";
 import { Banner } from "./components/Banner";
 import { ShootingStars } from "./components/ShootingStars";
 import { GlassFilter } from "./components/LiquidGlass";
+import { RGBWaveShader } from "./components/RGBWaveShader";
 
 // Below-fold sections loaded only when needed
 const About      = lazy(() => import("./components/About").then(m => ({ default: m.About })));
@@ -57,7 +58,10 @@ function App() {
         <Suspense fallback={null}>
           <About />
           <Experience />
-          <Projects />
+          <div className="wave-bg-section">
+            <RGBWaveShader />
+            <Projects />
+          </div>
           <Skills />
           <Leadership />
           <AISection />

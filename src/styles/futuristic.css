@@ -1313,28 +1313,38 @@ a:visited {
   display: block;
 }
 
-.experience-section {
+.wave-bg-section {
   position: relative;
   overflow: hidden;
-  padding: 200px 0;
-  min-height: 700px;
 }
 
-.experience-section::after {
+.wave-bg-section::before {
   content: "";
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 180px;
+  top: 0; left: 0; right: 0;
+  height: 220px;
+  background: linear-gradient(to bottom, #000, transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.wave-bg-section::after {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 220px;
   background: linear-gradient(to bottom, transparent, #000);
   pointer-events: none;
   z-index: 1;
 }
 
-.experience-section .container {
+.wave-bg-section > .neo-section {
   position: relative;
   z-index: 2;
+}
+
+.experience-section {
+  position: relative;
 }
 
 .experience-section .orbit-timeline {

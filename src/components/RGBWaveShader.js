@@ -86,12 +86,16 @@ export const RGBWaveShader = () => {
 
     const handleResize = () => {
       if (!refs.renderer || !refs.uniforms) return;
-      const w = canvas.offsetWidth  || window.innerWidth;
-      const h = canvas.offsetHeight || 400;
+      const parent = canvas.parentElement;
+      const w = (parent ? parent.offsetWidth : canvas.offsetWidth) || window.innerWidth;
+      const h = (parent ? parent.offsetHeight : canvas.offsetHeight) || 800;
       refs.renderer.setSize(w, h, false);
       refs.uniforms.resolution.value = [w, h];
     };
     handleResize();
+
+    const resizeObserver = new ResizeObserver(handleResize);
+    if (canvas.parentElement) resizeObserver.observe(canvas.parentElement);
 
     const animate = () => {
       refs.animationId = requestAnimationFrame(animate);
@@ -107,6 +111,7 @@ export const RGBWaveShader = () => {
       cancelAnimationFrame(refs.animationId);
       window.removeEventListener("resize", handleResize);
       observer.disconnect();
+      resizeObserver.disconnect();
       refs.mesh.geometry.dispose();
       refs.mesh.material.dispose();
       refs.renderer.dispose();

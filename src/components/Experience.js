@@ -1,7 +1,6 @@
 import { Container } from "react-bootstrap";
 import { motion } from "framer-motion";
 import { SectionHeading } from "./SectionHeading";
-import { RGBWaveShader } from "./RGBWaveShader";
 
 const experiences = [
   {
@@ -31,7 +30,6 @@ const experiences = [
 export const Experience = () => {
   return (
     <section className="neo-section experience-section" id="experience">
-      <RGBWaveShader />
       <Container>
         <SectionHeading
           title="Experience"
