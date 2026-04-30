@@ -71,6 +71,7 @@ export const GlassLayers = ({ tint = "rgba(255,255,255,0.12)" }) => (
         WebkitBackdropFilter: "blur(5px)",
         filter: "url(#glass-distortion)",
         isolation: "isolate",
+        pointerEvents: "none",
       }}
     />
     <span
@@ -81,6 +82,7 @@ export const GlassLayers = ({ tint = "rgba(255,255,255,0.12)" }) => (
         zIndex: 1,
         borderRadius: "inherit",
         background: tint,
+        pointerEvents: "none",
       }}
     />
     <span
@@ -92,6 +94,7 @@ export const GlassLayers = ({ tint = "rgba(255,255,255,0.12)" }) => (
         borderRadius: "inherit",
         boxShadow:
           "inset 2px 2px 1px rgba(255,255,255,0.5), inset -1px -1px 1px rgba(255,255,255,0.45)",
+        pointerEvents: "none",
       }}
     />
   </>

@@ -1,7 +1,7 @@
 import { lazy, Suspense, useEffect, useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import "./styles/futuristic.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { NavBar } from "./components/NavBar";
 import { Banner } from "./components/Banner";
 import { ShootingStars } from "./components/ShootingStars";

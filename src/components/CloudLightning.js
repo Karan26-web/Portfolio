@@ -16,14 +16,6 @@ export const CloudLightning = () => (
         <filter id="cloud-wisp" x="-5%" y="-30%" width="110%" height="180%">
           <feGaussianBlur stdDeviation="3.5" />
         </filter>
-        <filter id="bolt-glow">
-          <feGaussianBlur stdDeviation="2.5" result="blur" />
-          <feMerge>
-            <feMergeNode in="blur" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
-
         {/* Fades to transparent at the bottom — no hard edge */}
         <linearGradient id="cloud-fade-main" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%"   stopColor="#1c2b42" stopOpacity="0.65" />
@@ -41,16 +33,6 @@ export const CloudLightning = () => (
           <stop offset="100%" stopColor="#0d1825" stopOpacity="0" />
         </linearGradient>
 
-        <linearGradient id="bolt-fade" x1="0" y1="20" x2="0" y2="120" gradientUnits="userSpaceOnUse">
-          <stop offset="0%"   stopColor="#ffffff" stopOpacity="1" />
-          <stop offset="55%"  stopColor="#00e5ff" stopOpacity="0.7" />
-          <stop offset="100%" stopColor="#3ddc84" stopOpacity="0" />
-        </linearGradient>
-        <linearGradient id="bolt-fade2" x1="0" y1="20" x2="0" y2="120" gradientUnits="userSpaceOnUse">
-          <stop offset="0%"   stopColor="#ffffff" stopOpacity="1" />
-          <stop offset="55%"  stopColor="#a0c4ff" stopOpacity="0.7" />
-          <stop offset="100%" stopColor="#2255ff" stopOpacity="0" />
-        </linearGradient>
       </defs>
 
       {/* Back depth layer */}
@@ -71,23 +53,6 @@ export const CloudLightning = () => (
         fill="url(#cloud-fade-front)" filter="url(#cloud-wisp)"
       />
 
-      {/* Only 2 lightning bolts */}
-      <path className="bolt b3"
-        d="M520,38 L508,62 L518,59 L503,88"
-        stroke="url(#bolt-fade)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" filter="url(#bolt-glow)"
-      />
-      <path className="bolt b3"
-        d="M518,59 L527,76"
-        stroke="url(#bolt-fade)" strokeWidth="1.5" strokeLinecap="round" fill="none" filter="url(#bolt-glow)"
-      />
-      <path className="bolt b5"
-        d="M970,34 L958,60 L968,57 L953,86"
-        stroke="url(#bolt-fade2)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" filter="url(#bolt-glow)"
-      />
-      <path className="bolt b5"
-        d="M968,57 L978,74"
-        stroke="url(#bolt-fade2)" strokeWidth="1.5" strokeLinecap="round" fill="none" filter="url(#bolt-glow)"
-      />
     </svg>
   </div>
 );

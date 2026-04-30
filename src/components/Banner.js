@@ -21,7 +21,7 @@ export const Banner = () => {
   );
 
   return (
-    <section className="banner hero-neo" id="home" style={{ background: "#000" }}>
+    <section className="banner hero-neo" id="home">
       {/* Single canvas renders both top and bottom waves */}
       <WebGLShader />
 

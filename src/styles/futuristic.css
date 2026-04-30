@@ -2,9 +2,9 @@
 
 :root {
   --scroll-y: 0;
-  --bg-1: #0b0f1a;
-  --bg-2: #1a1f3a;
-  --bg-3: #2e1a47;
+  --bg-1: #000000;
+  --bg-2: #000000;
+  --bg-3: #000000;
   --text-main: #f4f7ff;
   --text-soft: #bbcaea;
   --cyan: #57ecff;
@@ -317,13 +317,14 @@ body.glitch-active *:not(.glitch-overlay) {
   }
 }
 
+html {
+  background: #000 !important;
+}
+
 body {
   cursor: none;
   color: var(--text-main);
-  background:
-    radial-gradient(circle at 12% 12%, rgba(87, 236, 255, 0.14), transparent 28%),
-    radial-gradient(circle at 85% 14%, rgba(171, 112, 255, 0.2), transparent 34%),
-    linear-gradient(140deg, var(--bg-1) 0%, var(--bg-2) 52%, var(--bg-3) 100%);
+  background: #000 !important;
   font-family: "Exo 2", "Centra", sans-serif;
 }
 
@@ -339,11 +340,13 @@ a:visited {
   min-height: 100vh;
   position: relative;
   isolation: isolate;
+  background: #000;
 }
 
 .site-content {
   position: relative;
   z-index: 2;
+  background: #000;
 }
 
 .moon-cursor {
@@ -439,8 +442,8 @@ a:visited {
   inset: -25% 0;
   z-index: -1;
   background:
-    radial-gradient(circle at 15% 32%, rgba(87, 236, 255, 0.08), transparent 30%),
-    radial-gradient(circle at 78% 24%, rgba(171, 112, 255, 0.1), transparent 34%);
+    radial-gradient(circle at 15% 32%, rgba(87, 236, 255, 0.05), transparent 30%),
+    radial-gradient(circle at 78% 24%, rgba(171, 112, 255, 0.06), transparent 34%);
   filter: blur(20px);
 }
 
@@ -925,6 +928,7 @@ a:visited {
 }
 
 .hero-neo {
+  position: relative;
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -932,9 +936,22 @@ a:visited {
   overflow: hidden;
 }
 
+.hero-neo::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 220px;
+  background: linear-gradient(to bottom, transparent, #000);
+  pointer-events: none;
+  z-index: 3;
+}
+
 .starfield {
   position: absolute;
   inset: 0;
+  pointer-events: none;
 }
 
 .star {
@@ -1131,32 +1148,6 @@ a:visited {
   height: 100%;
 }
 
-/* Lightning bolt animations */
-@keyframes bolt-strike {
-  0%, 82%, 100% { opacity: 0; }
-  84%  { opacity: 1; }
-  86%  { opacity: 0.15; }
-  88%  { opacity: 0.95; }
-  91%  { opacity: 0; }
-}
-
-@keyframes bolt-strike-alt {
-  0%, 70%, 100% { opacity: 0; }
-  72%  { opacity: 1; }
-  74%  { opacity: 0.1; }
-  76%  { opacity: 0.85; }
-  80%  { opacity: 0; }
-}
-
-.bolt { opacity: 0; }
-
-.b1 { animation: bolt-strike     3.2s ease-in-out infinite 0.0s; stroke: #fff; filter: drop-shadow(0 0 4px #00e5ff) drop-shadow(0 0 10px #3ddc84); }
-.b2 { animation: bolt-strike-alt 4.1s ease-in-out infinite 1.4s; stroke: #d0f0ff; filter: drop-shadow(0 0 4px #2255ff) drop-shadow(0 0 10px #00e5ff); }
-.b3 { animation: bolt-strike     2.8s ease-in-out infinite 0.6s; stroke: #fff; filter: drop-shadow(0 0 5px #00e5ff) drop-shadow(0 0 14px #3ddc84); }
-.b4 { animation: bolt-strike-alt 3.7s ease-in-out infinite 2.2s; stroke: #d0f0ff; filter: drop-shadow(0 0 4px #2255ff) drop-shadow(0 0 10px #00e5ff); }
-.b5 { animation: bolt-strike     3.4s ease-in-out infinite 1.0s; stroke: #fff; filter: drop-shadow(0 0 5px #00e5ff) drop-shadow(0 0 14px #3ddc84); }
-.b6 { animation: bolt-strike-alt 4.5s ease-in-out infinite 3.1s; stroke: #d0f0ff; filter: drop-shadow(0 0 4px #2255ff) drop-shadow(0 0 10px #00e5ff); }
-
 .about-section .feature-card {
   padding: 30px;
   height: 100%;
@@ -1189,7 +1180,6 @@ a:visited {
 
 .project-card {
   padding: 18px;
-  transform-style: preserve-3d;
   height: 100%;
   display: flex;
 }
@@ -1321,6 +1311,30 @@ a:visited {
 
 .ai-tech-icon svg {
   display: block;
+}
+
+.experience-section {
+  position: relative;
+  overflow: hidden;
+  padding: 200px 0;
+  min-height: 700px;
+}
+
+.experience-section::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 180px;
+  background: linear-gradient(to bottom, transparent, #000);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.experience-section .container {
+  position: relative;
+  z-index: 2;
 }
 
 .experience-section .orbit-timeline {
