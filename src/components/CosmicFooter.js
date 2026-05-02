@@ -188,6 +188,7 @@ export const CosmicFooter = () => {
       setIsGlitching(false);
       document.body.classList.remove("blackhole-glitch", "glitch-active");
       resetTimer.current = null;
+      setTimeout(() => setHasClicked(false), 1200);
     }, GLITCH_DURATION);
   };
 

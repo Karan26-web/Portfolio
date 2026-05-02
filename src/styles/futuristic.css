@@ -2345,8 +2345,8 @@ a:visited {
   top: 50%;
   transform: translateY(-50%);
   /* initial; overridden by rAF on scroll */
-  width: 184px;
-  height: 126px;
+  width: 220px;
+  height: 200px;
   z-index: 4;
   will-change: transform;
   pointer-events: auto;
@@ -2356,22 +2356,26 @@ a:visited {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 52px;
+  bottom: 62px;
   cursor: pointer;
-  border: 1px solid rgba(255, 142, 179, 0.34);
+  border: 1px solid rgba(255, 142, 179, 0.65);
   border-radius: 999px;
-  background: rgba(46, 20, 42, 0.38);
-  color: rgba(255, 225, 238, 0.8);
-  padding: 6px 11px;
-  font-size: 10px;
-  letter-spacing: 0.09em;
+  background: rgba(46, 20, 42, 0.6);
+  color: rgba(255, 225, 238, 0.95);
+  padding: 10px 20px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   line-height: 1;
-  opacity: 0.54;
-  box-shadow: 0 0 12px rgba(255, 102, 170, 0.12);
+  opacity: 0.9;
+  box-shadow:
+    0 0 18px rgba(255, 102, 170, 0.35),
+    0 0 36px rgba(255, 102, 170, 0.15);
+  animation: blackholeAttract 2.8s ease-in-out infinite;
   transition: opacity 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease, transform 0.28s ease, background 0.28s ease;
   pointer-events: auto;
   z-index: 10;
+  white-space: nowrap;
 }
 
 .blackhole-trigger:focus-visible {
@@ -2389,7 +2393,7 @@ a:visited {
     0 0 22px rgba(255, 130, 183, 0.48),
     0 0 42px rgba(95, 174, 255, 0.28),
     0 0 60px rgba(120, 80, 255, 0.16);
-  animation: blackholeTriggerFlicker 0.95s ease-in-out infinite, blackholePull 2.2s ease-in-out infinite;
+  animation: blackholeTriggerFlicker 0.95s ease-in-out infinite;
 }
 
 .footer-blackhole-zone.is-hovering .blackhole-trigger {
@@ -2773,6 +2777,17 @@ body.blackhole-glitch .neo-footer p {
   50% {
     opacity: 0.86;
     transform: translateY(-4px);
+  }
+}
+
+@keyframes blackholeAttract {
+  0%, 100% {
+    box-shadow: 0 0 18px rgba(255, 102, 170, 0.35), 0 0 36px rgba(255, 102, 170, 0.15);
+    border-color: rgba(255, 142, 179, 0.65);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(255, 102, 170, 0.7), 0 0 56px rgba(255, 102, 170, 0.35), 0 0 80px rgba(120, 80, 255, 0.2);
+    border-color: rgba(255, 182, 208, 0.95);
   }
 }
 
