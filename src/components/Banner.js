@@ -66,9 +66,11 @@ export const Banner = () => {
                 className="hero-cta star-hover"
                 style={{
                   position: "relative",
-                  background: "transparent",
-                  border: "1px solid rgba(255,255,255,0.3)",
-                  boxShadow: "0 6px 20px rgba(0,0,0,0.25)",
+                  background: "linear-gradient(90deg, #57ecff, #4f8dff)",
+                  border: "1px solid rgba(104, 225, 255, 0.6)",
+                  boxShadow: "0 8px 28px rgba(84, 151, 255, 0.5)",
+                  color: "#020b1a",
+                  fontWeight: 700,
                 }}
               >
                 <GlassLayers tint="rgba(87, 236, 255, 0.1)" />

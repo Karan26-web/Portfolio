@@ -977,17 +977,13 @@ a:visited {
 }
 
 .hero-kicker {
-  display: inline-flex;
+  display: block;
   margin-bottom: 16px;
-  border-radius: 999px;
-  border: 1px solid rgba(133, 198, 255, 0.5);
-  padding: 8px 14px;
   text-transform: uppercase;
-  letter-spacing: 0.09em;
+  letter-spacing: 0.14em;
   font-size: 12px;
   font-weight: 600;
-  color: #ddf0ff;
-  background: rgba(18, 27, 56, 0.56);
+  color: rgba(100, 210, 255, 0.75);
 }
 
 .hero-neo h1 {
@@ -1316,6 +1312,7 @@ a:visited {
 .wave-bg-section {
   position: relative;
   overflow: hidden;
+  padding: 220px 0;
 }
 
 .wave-bg-section::before {
