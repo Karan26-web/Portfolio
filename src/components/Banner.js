@@ -43,20 +43,6 @@ export const Banner = () => {
         ))}
       </div>
 
-      <motion.div
-        className="hero-planet parallax slow"
-        aria-hidden="true"
-        animate={{ y: [0, -20, 0], rotate: [0, 4, 0] }}
-        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-      />
-
-      <motion.div
-        className="hero-planet-ring parallax fast"
-        aria-hidden="true"
-        animate={{ rotate: [0, 360] }}
-        transition={{ duration: 24, repeat: Infinity, ease: "linear" }}
-      />
-
       <Container style={{ position: "relative", zIndex: 2 }}>
         <Row className="align-items-center g-5">
           <Col xs={12} lg={6}>
