@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { motion } from "framer-motion";
-import headerImg from "../assets/img/header-img.svg";
+import headerImg from "../assets/img/karan-astronaut.png";
 import { GlassLayers } from "./LiquidGlass";
 import { WebGLShader } from "./WebGLShader";
 
@@ -85,7 +85,6 @@ export const Banner = () => {
               transition={{ duration: 0.85, delay: 0.12, ease: "easeOut" }}
             >
               <img src={headerImg} alt="Floating astronaut" loading="eager" />
-              <span className="hero-orb" aria-hidden="true" />
             </motion.div>
           </Col>
         </Row>

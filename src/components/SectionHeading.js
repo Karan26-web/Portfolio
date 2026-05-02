@@ -11,7 +11,6 @@ export const SectionHeading = ({ title, description }) => {
     >
       <h2 className="skills-title">
         {title}
-        <span className="skills-title-dot" aria-hidden="true" />
       </h2>
       <span className="skills-title-line" aria-hidden="true" />
       {description ? <p className="skills-subtitle">{description}</p> : null}
